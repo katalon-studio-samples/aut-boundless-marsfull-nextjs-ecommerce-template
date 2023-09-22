@@ -8,8 +8,11 @@ if (process.env.BOUNDLESS_MEDIA_SERVER) {
 }
 
 module.exports = {
+	reactStrictMode: true,
+	swcMinify: true,
 	images: {
-		domains: imgDomains
+		domains: imgDomains,
+		unoptimized: true
 	},
 	webpack: (config) => {
 		const defineMap = {};
