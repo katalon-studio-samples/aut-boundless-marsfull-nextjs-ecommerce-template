@@ -14,6 +14,7 @@ module.exports = {
 		domains: imgDomains,
 		unoptimized: true
 	},
+	productionBrowserSourceMaps: true,
 	webpack: (config) => {
 		const defineMap = {};
 
