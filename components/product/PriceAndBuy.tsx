@@ -40,10 +40,16 @@ export default function ProductPriceAndBuy({product, selectedVariant, setError, 
 			setError('Please, choose a variant.');
 			return;
 		}
+		
+		let itemId;
+		if (selectedVariant) {
+			const newSelectedVariant: any = selectedVariant;
+			itemId = newSelectedVariant?.inventoryItem?.item_id;
+		} else {
+			itemId = product.item_id;
+		}
 
-		const itemId = selectedVariant ? selectedVariant.item_id : product.item_id;
 		dispatch(addItem2Cart(itemId, qty));
-
 		if (onAddedToCart) {
 			onAddedToCart(itemId, qty);
 		}
