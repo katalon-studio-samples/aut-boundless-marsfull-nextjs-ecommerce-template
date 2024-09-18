@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic';
 import {ReactNode, useEffect} from 'react';
 import Head from 'next/head';
-import Script from 'next/script';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import AlertWidget from '../components/Alert';
@@ -56,11 +55,12 @@ export default function MainLayout({children, title, metaData, mainMenu, footerM
 
 				<link rel='preconnect' href={process.env.BOUNDLESS_API_BASE_URL || 'https://api.boundless-commerce.com'} crossOrigin={'use-credentials'} />
 				{noIndex && <meta name='robots' content='noindex' />}
-				<Script
-					src='https://static.staging.katalon.com/libs/traffic-agent/v1/traffic-agent.min.js'
-					strategy='lazyOnload'
-					client-code='KA-346522-37'
-				/>
+				<script defer async
+					// @ts-ignore
+								client-code='KA-346522-37'
+					// @ts-ignore
+								src='https://static.staging.katalon.com/libs/traffic-agent/v1/traffic-agent.min.js'>
+				</script>
 			</Head>
 			<AlertWidget />
 			<div className={clsx('page-layout page-layout_main mars-full-theme', {'page-layout_aside-opened': asideIsOpened})}>
