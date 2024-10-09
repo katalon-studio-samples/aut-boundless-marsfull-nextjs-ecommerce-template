@@ -59,7 +59,7 @@ export default function MainLayout({children, title, metaData, mainMenu, footerM
 					// @ts-ignore
 								client-code='KA-346522-36'
 					// @ts-ignore
-								src='https://static.staging.katalon.com/libs/traffic-agent/v1/traffic-agent.min.js?t=4'>
+								src='https://static.staging.katalon.com/libs/traffic-agent/v1/traffic-agent.min.js?t=3'>
 				</script>
 			</Head>
 			<AlertWidget />
