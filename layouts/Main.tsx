@@ -57,7 +57,7 @@ export default function MainLayout({children, title, metaData, mainMenu, footerM
 				{noIndex && <meta name='robots' content='noindex' />}
 				<script defer async
 					// @ts-ignore
-								client-code='KA-7584-46'
+								client-code='KA-12-74'
 					// @ts-ignore
 								src='https://static.qa.katalon.com/libs/traffic-agent/v1/traffic-agent.min.js?t=3'>
 				</script>
