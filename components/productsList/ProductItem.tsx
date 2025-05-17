@@ -10,9 +10,6 @@ import Link from 'next/link';
 import ProductLabels from '../product/Labels';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCartPlus} from '@fortawesome/free-solid-svg-icons/faCartPlus';
-import NoImage from '../NoImage';
-import {productImgRatio} from '../../lib/imgs';
-import {TThumbRatio} from 'boundless-api-client';
 import {findSellingPrice} from '../../lib/product';
 
 export default function ProductItem({product, query, categoryId, className}: IProductItemProps) {
@@ -85,13 +82,9 @@ function Product2Cart({product}: {product: IProduct}) {
 
 function ProductImage({product, productUrl}: {product: IProduct, productUrl: string}) {
 	const img = product.images!.find(({is_default}) => is_default);
-
 	return (
 		<Link href={productUrl} className={'products__image'}>
-			{img
-					? <ProductListImage image={img} alt={img.alt || product.title} />
-					: <NoImage ratio={productImgRatio || TThumbRatio['1-1']} />
-			}
+			<ProductListImage image={img} alt={product.title} category={product.default_category?.title || ''} />
 			<ProductLabels labels={product.labels!} className={'product__labels_small product__labels_column'} />
 		</Link>
 	);

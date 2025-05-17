@@ -21,7 +21,7 @@
   "author": "Kirill Zhirnov <ekvixgroup@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --port 8000",
     "build": "next build",
     "start": "next start",
     "lint": "npx eslint --ext .ts --ext .tsx . && npx stylelint ./styles"

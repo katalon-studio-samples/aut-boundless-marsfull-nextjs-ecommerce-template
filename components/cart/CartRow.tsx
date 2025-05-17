@@ -9,20 +9,17 @@ import useFormatCurrency from '../../hooks/useFormatCurrency';
 
 export default function CartRow({item, rmItem, onQtyChange}: ICartRowProps) {
 	const {formatCurrency} = useFormatCurrency();
-
-	const imgPath = item.vwItem?.image?.path;
 	const productUrl = getProductUrl(item.vwItem.product);
-
-	const imgElement = imgPath
-		? <img src={getCartImg(imgPath)}
-			alt={item.vwItem?.product?.title}
-		/>
-		: <NoImage ratio={TThumbRatio['1-1']} className={'bg-xs'} />;
 
 	return (
 		<div className='cart-item row'>
 			<div className='cart-item__description-col col-md-4'>
-				<Link href={productUrl} className='cart-item__img-link'>{imgElement}</Link>
+				<Link href={productUrl} className='cart-item__img-link'>
+					<img src={getCartImg(item.vwItem.product.default_category_id)}
+							 width={60}
+							 alt={item.vwItem?.product?.title}
+					/>
+				</Link>
 				<div className='cart-item__title'>
 					<div>
 						<Link href={productUrl} legacyBehavior>

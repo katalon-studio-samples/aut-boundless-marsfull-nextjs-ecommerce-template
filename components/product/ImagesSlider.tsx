@@ -36,6 +36,7 @@ export default function ImagesSlider({images, onClick}: ImagesSliderProps) {
 				>
 					{images.map((image, i) =>
 						<SwiperSlide key={image.image.image_id} onClick={onImageClick.bind(null, i)} >
+							{/*// @ts-ignore*/}
 							<ProductImage image={image.image} maxSize={800} alt={image.alt || image.description!} />
 						</SwiperSlide>
 					)}

@@ -1,5 +1,6 @@
 import {TThumbRatio} from 'boundless-api-client';
 import {apiClient} from './api';
+import {getProductImage} from "../data/mockImageServices";
 
 //fixed aspect ratio for product images
 export const productImgRatio = process.env.BOUNDLESS_PRODUCTS_IMAGE_PROPORTION as TThumbRatio || null;
@@ -110,11 +111,8 @@ export function getManufacturerImg(image: IImagePartial, maxSize: number = 200):
 }
 
 
-export function getCartImg(imgLocalPath: string, maxSize: number = 60): string {
-	return apiClient.makeThumb({
-		imgLocalPath,
-		maxSize
-	}).getSrc();
+export function getCartImg(category: any): string {
+	return getProductImage(category)?.src || '';
 }
 
 export interface IImagePartial {
