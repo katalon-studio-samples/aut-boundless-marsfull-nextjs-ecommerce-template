@@ -34,8 +34,24 @@ export function getProductsListImg(image: IImagePartial, maxSize: number): IImag
 	};
 }
 
-export function getProductImg(image: IImagePartial, maxSize: number, preserveRatio: boolean = false): IImageData {
+function getImageSize(src: string): Promise<{width: number, height: number}> {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve({width: img.width, height: img.height});
+        img.onerror = reject;
+        img.src = src;
+    });
+}
+
+export async function getProductImg(
+	image: IImagePartial,
+	maxSize: number,
+	preserveRatio: boolean = false
+): Promise<IImageData & { width: number | undefined; height: number | undefined }> {
 	const {width, height, path: imgLocalPath} = image;
+
+	let result: IImageData & { width: number | undefined; height: number | undefined };
+
 	if (height && width) {
 		const thumb = apiClient.makeThumb({
 			imgLocalPath,
@@ -50,17 +66,32 @@ export function getProductImg(image: IImagePartial, maxSize: number, preserveRat
 		thumb.setGrayscale(true);
 		thumb.setBlur(2);
 
-		return {
+		result = {
 			...attrs,
-			blurSrc: thumb.getSrc()
+			blurSrc: thumb.getSrc(),
+			width,
+			height
+		};
+	} else {
+		const thumb = apiClient.makeThumb({
+			imgLocalPath,
+			maxSize
+		});
+		const src = thumb.getSrc();
+
+		result = {
+			src,
+			width: undefined,
+			height: undefined
 		};
 	}
 
+	const srcForSize = (result.src ?? result.blurSrc) as string;
+	const size = await getImageSize(srcForSize);
 	return {
-		src: apiClient.makeThumb({
-			imgLocalPath,
-			maxSize
-		}).getSrc()
+		...result,
+		width: size.width,
+		height: size.height
 	};
 }
 
