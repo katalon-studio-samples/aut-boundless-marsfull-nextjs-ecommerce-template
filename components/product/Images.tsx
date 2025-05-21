@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import clsx from 'clsx';
 import ProductImage from './ProductImage';
 import {getMetaImgUrl, getProductImg, productImgRatio} from '../../lib/imgs';
@@ -29,10 +29,34 @@ function ProductImages({product}: {product: IProductItem}) {
 		openLighBox(index);
 	};
 
-	const images4Gallery = useMemo(() => (images || []).map(image => getProductImg(image.image, 1800, false)), [images]);
+	const [images4Gallery, setImages4Gallery] = useState<any[]>([]);
+
+	useEffect(() => {
+		let cancelled = false;
+		async function fetchImages() {
+			const results = await Promise.all(
+				(images || []).map(image => getProductImg(image.image, 1800, false))
+			);
+			if (!cancelled) setImages4Gallery(results);
+		}
+		fetchImages();
+		return () => { cancelled = true; };
+	}, [images]);
 
 	if (!images || !images.length)
 		return <NoImage ratio={productImgRatio || '1-1'} />;
+
+	// Show loading state if images4Gallery is not fully loaded or contains undefined items
+	const imagesReady =
+		Array.isArray(images4Gallery) &&
+		images4Gallery.length === images.length &&
+		images4Gallery.every(img => img && typeof img === 'object' && img.src);
+
+	if (!imagesReady) {
+		return (
+			<div className='product-gallery__loading' />
+		);
+	}
 
 	return (
 		<>
