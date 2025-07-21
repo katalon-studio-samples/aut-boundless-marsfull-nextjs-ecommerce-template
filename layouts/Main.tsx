@@ -59,7 +59,7 @@ export default function MainLayout({children, title, metaData, mainMenu, footerM
 					// @ts-ignore
 								client-code='KA-9224-016'
 					// @ts-ignore
-								src='https://static.qa.katalon.com/libs/traffic-agent/v1/traffic-agent.min.js?source=testpak'>
+								src='https://static.qa.katalon.com/libs/traffic-agent/v1/traffic-agent.min.js?source=testpak_invalid'>
 				</script>
 				<script defer async
 								src='https://static.qa.katalon.com/libs/traffic-agent/v1/truetest-sdk.js?clientCode=KA-9224-016'>
