@@ -14,6 +14,7 @@ import NoImage from '../NoImage';
 import {productImgRatio} from '../../lib/imgs';
 import {TThumbRatio} from 'boundless-api-client';
 import {findSellingPrice} from '../../lib/product';
+import {TRUE} from "sass";
 
 export default function ProductItem({product, query, categoryId, className}: IProductItemProps) {
 	const params = {...query};
@@ -61,7 +62,13 @@ export default function ProductItem({product, query, categoryId, className}: IPr
 
 function Product2Cart({product}: {product: IProduct}) {
 	const dispatch = useAppDispatch();
-	const onAddToCart = () => dispatch(addItem2Cart(product.item_id, 1));
+	const onAddToCart = () => {
+		// @ts-ignore
+		TrueTest.setSessionAttributes({
+			add_to_cart: 'TRUE',
+		});
+		dispatch(addItem2Cart(product.item_id, 1));
+	};
 
 	return (
 		<div className={clsx('products__to-cart', {
