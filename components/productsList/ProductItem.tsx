@@ -14,7 +14,6 @@ import NoImage from '../NoImage';
 import {productImgRatio} from '../../lib/imgs';
 import {TThumbRatio} from 'boundless-api-client';
 import {findSellingPrice} from '../../lib/product';
-import {TRUE} from "sass";
 
 export default function ProductItem({product, query, categoryId, className}: IProductItemProps) {
 	const params = {...query};
