@@ -60,6 +60,10 @@ export default function MainLayout({children, title, metaData, mainMenu, footerM
 								// @ts-ignore
 								onLoad="startTrafficAgent('KA-1281120-14')">
 				</script>
+				<script
+					// @ts-ignore
+					src='https://static.katalon.com/libs/traffic-agent/v1/truetest-sdk.min.js'>
+				</script>
 			</Head>
 			<AlertWidget />
 			<div className={clsx('page-layout page-layout_main mars-full-theme', {'page-layout_aside-opened': asideIsOpened})}>
