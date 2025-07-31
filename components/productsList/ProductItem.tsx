@@ -61,7 +61,13 @@ export default function ProductItem({product, query, categoryId, className}: IPr
 
 function Product2Cart({product}: {product: IProduct}) {
 	const dispatch = useAppDispatch();
-	const onAddToCart = () => dispatch(addItem2Cart(product.item_id, 1));
+	const onAddToCart = () => {
+		// @ts-ignore
+		TrueTest.setSessionAttributes({
+			add_to_cart: 'TRUE',
+		});
+		dispatch(addItem2Cart(product.item_id, 1));
+	};
 
 	return (
 		<div className={clsx('products__to-cart', {
