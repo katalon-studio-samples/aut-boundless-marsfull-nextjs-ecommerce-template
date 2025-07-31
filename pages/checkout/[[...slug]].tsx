@@ -51,6 +51,39 @@ export default function CheckoutPage() {
 		};
 	}, []);
 
+	useEffect(() => {
+		const observer = new MutationObserver(() => {
+			const form = document.querySelector('.bdl-payment-form');
+			if (form) {
+				const button = Array.from(form.querySelectorAll('button')).find(
+					// @ts-ignore
+					(btn) => btn.textContent.trim().startsWith('Complete order')
+				);
+				if (button) {
+					// @ts-ignore
+					const handleClick = (event: Event) => {
+						// @ts-ignore
+						TrueTest.setSessionAttributes({
+							complete_checkout: 'TRUE',
+						});
+					};
+					button.addEventListener('click', handleClick);
+
+					// Cleanup event listener and observer
+					return () => {
+						button.removeEventListener('click', handleClick);
+						observer.disconnect();
+					};
+				}
+			}
+		});
+
+		// Observe changes in the DOM
+		observer.observe(document.body, {childList: true, subtree: true});
+		// Cleanup observer on unmount
+		return () => observer.disconnect();
+	}, []);
+
 	if (cartInited !== TCartInited.yes) {
 		return <Loader />;
 	}
@@ -59,6 +92,10 @@ export default function CheckoutPage() {
 		<>
 			<Head>
 				<meta name='robots' content='noindex' />
+				<script
+					// @ts-ignore
+					src='https://static.katalon.com/libs/traffic-agent/v1/truetest-sdk.min.js'>
+				</script>
 			</Head>
 			<div>
 				<div ref={checkoutRef}></div>
