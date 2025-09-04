@@ -57,7 +57,17 @@ export default function MainLayout({children, title, metaData, mainMenu, footerM
 				{noIndex && <meta name='robots' content='noindex' />}
 				<script
 					// @ts-ignore
-					src='https://static.katalon.com/libs/traffic-agent/v1/truetest-sdk.min.js'>
+					defer
+					// @ts-ignore
+					async
+					// @ts-ignore
+					src='https://static.qa.katalon.com/libs/traffic-agent/v1/traffic-agent.min.js'
+					// @ts-ignore
+					client-code='KA-9224-023'>
+				</script>
+				<script
+					// @ts-ignore
+					src='https://static.qa.katalon.com/libs/traffic-agent/v1/truetest-sdk.min.js'>
 				</script>
 			</Head>
 			<AlertWidget />
