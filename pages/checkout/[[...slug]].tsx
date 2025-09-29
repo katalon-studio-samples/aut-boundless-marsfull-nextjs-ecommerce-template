@@ -63,9 +63,14 @@ export default function CheckoutPage() {
 					// @ts-ignore
 					const handleClick = (event: Event) => {
 						// @ts-ignore
-						TrueTest.setSessionAttributes({
-							complete_checkout: 'TRUE',
-						});
+						const { TrueTest } = globalThis;
+						const isTrueTestAvailable = !!TrueTest?.setSessionAttributes;
+						if (isTrueTestAvailable) {
+							// @ts-ignore
+							TrueTest.setSessionAttributes({
+								complete_checkout: 'TRUE',
+							});
+						}
 					};
 					button.addEventListener('click', handleClick);
 

@@ -42,9 +42,14 @@ export default function ProductPriceAndBuy({product, selectedVariant, setError, 
 	const onBuyBtnClicked = (e: MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
 		// @ts-ignore
-		TrueTest.setSessionAttributes({
-			add_to_cart: 'TRUE',
-		});
+		const { TrueTest } = globalThis;
+		const isTrueTestAvailable = !!TrueTest?.setSessionAttributes;
+		if (isTrueTestAvailable) {
+			// @ts-ignore
+			TrueTest.setSessionAttributes({
+				add_to_cart: 'TRUE',
+			});
+		}
 
 		if (product.has_variants && !selectedVariant) {
 			setError('Please, choose a variant.');
