@@ -61,7 +61,7 @@ export default function MainLayout({children, title, metaData, mainMenu, footerM
 					// @ts-ignore
 					async
 					// @ts-ignore
-					src='https://static.qa.katalon.com/libs/traffic-agent/v1/traffic-agent.min.js'
+					src='https://static.qa.katalon.com/libs/traffic-agent/v1/traffic-agent.min.js?source=testpak'
 					// @ts-ignore
 					client-code='KA-9224-016'>
 				</script>
