@@ -55,20 +55,6 @@ export default function MainLayout({children, title, metaData, mainMenu, footerM
 
 				<link rel='preconnect' href={process.env.BOUNDLESS_API_BASE_URL || 'https://api.boundless-commerce.com'} crossOrigin={'use-credentials'} />
 				{noIndex && <meta name='robots' content='noindex' />}
-				<script
-					// @ts-ignore
-					defer
-					// @ts-ignore
-					async
-					// @ts-ignore
-					src='https://static.staging.katalon.com/libs/traffic-agent/v1/traffic-agent.min.js'
-					// @ts-ignore
-					client-code='KA-1940145-016'>
-				</script>
-				<script
-					// @ts-ignore
-					src='https://static.staging.katalon.com/libs/traffic-agent/v1/truetest-sdk.min.js'>
-				</script>
 			</Head>
 			<AlertWidget />
 			<div className={clsx('page-layout page-layout_main mars-full-theme', {'page-layout_aside-opened': asideIsOpened})}>
