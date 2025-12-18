@@ -55,9 +55,7 @@ export default function MainLayout({children, title, metaData, mainMenu, footerM
 
 				<link rel='preconnect' href={process.env.BOUNDLESS_API_BASE_URL || 'https://api.boundless-commerce.com'} crossOrigin={'use-credentials'} />
 				{noIndex && <meta name='robots' content='noindex' />}
-				<script
-					// @ts-ignore
-					src='https://static.qa.katalon.com/libs/traffic-agent/v1/truetest-sdk.min.js'>
+				<script src='https://static.katalon.com/libs/traffic-agent/v1/truetest-sdk.js'>
 				</script>
 			</Head>
 			<AlertWidget />
