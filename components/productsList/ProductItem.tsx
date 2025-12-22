@@ -63,9 +63,14 @@ function Product2Cart({product}: {product: IProduct}) {
 	const dispatch = useAppDispatch();
 	const onAddToCart = () => {
 		// @ts-ignore
-		TrueTest.setSessionAttributes({
-			add_to_cart: 'TRUE',
-		});
+		const { TrueTest } = globalThis;
+		const isTrueTestAvailable = !!TrueTest?.setSessionAttributes;
+		if (isTrueTestAvailable) {
+			// @ts-ignore
+			TrueTest.setSessionAttributes({
+				add_to_cart: 'TRUE',
+			});
+		}
 		dispatch(addItem2Cart(product.item_id, 1));
 	};
 
