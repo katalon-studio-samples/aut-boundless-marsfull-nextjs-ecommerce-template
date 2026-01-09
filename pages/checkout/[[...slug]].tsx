@@ -99,7 +99,7 @@ export default function CheckoutPage() {
 				<meta name='robots' content='noindex' />
 				<script
 					// @ts-ignore
-					src='https://static.staging.katalon.com/libs/traffic-agent/v1/truetest-sdk.min.js'>
+					src='https://static.katalon.com/libs/traffic-agent/v1/truetest-sdk.min.js'>
 				</script>
 			</Head>
 			<div>
